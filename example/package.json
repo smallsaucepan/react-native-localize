@@ -2,35 +2,39 @@
   "name": "react-native-localize-example",
   "version": "0.0.1",
   "private": true,
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
-    "clean-modules": "rimraf ./node_modules/react-native-localize/{example,node_modules}",
-    "clean": "rimraf ./node_modules ./ios/Pods ./macos/Pods",
-    "preinstall": "cd .. && yarn prepack && cd example",
-    "postinstall": "yarn clean-modules && yarn pod-update",
-    "pod-update": "cd ./ios && pod update && cd ..",
-    "install-macos": "yarn add react-native-macos@0.68.13 && cd ./macos && pod update && cd ..",
-    "start-metro": "react-native start",
-    "start-webpack": "webpack serve",
+    "pod-install": "cd ios && bundle install && bundle exec pod install && cd ..",
+    "clean": "rm -rf ./node_modules ./ios/Pods",
+    "install-macos": "yarn add react-native-macos@0.73.2",
+    "preinstall": "cd .. && yarn && yarn build && cd example",
+    "postinstall": "yarn pod-install",
+    "start": "react-native start",
+    "start-web": "webpack serve",
     "reinstall": "yarn clean && yarn install"
   },
   "dependencies": {
-    "i18n-js": "3.9.2",
-    "lodash.memoize": "4.1.2",
-    "react": "18.0.0",
-    "react-dom": "18.0.0",
-    "react-native": "0.69.2",
-    "react-native-localize": "file:../",
-    "react-native-web": "0.18.7",
-    "react-native-windows": "0.69.3"
+    "@formatjs/intl": "2.9.9",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.73.2",
+    "react-native-localize": "link:../",
+    "react-native-web": "0.19.10"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.9",
-    "@babel/runtime": "^7.18.9",
-    "babel-loader": "^8.2.5",
-    "metro-react-native-babel-preset": "^0.70.3",
-    "rimraf": "^3.0.2",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.9.3"
+    "@babel/core": "^7.20.0",
+    "@babel/preset-env": "^7.20.0",
+    "@babel/runtime": "^7.20.0",
+    "@react-native/babel-preset": "0.73.19",
+    "@react-native/metro-config": "0.73.3",
+    "@types/react": "^18.2.47",
+    "babel-loader": "^9.1.3",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "typescript": "^5.3.3",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
   }
 }
